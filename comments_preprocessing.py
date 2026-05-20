@@ -293,5 +293,5 @@ print(f"Language breakdown  :")
 print(df_clean["language"].value_counts().to_string())
 print(f"Unique videos       : {df_clean['video_id'].nunique()}")
 print(f"Date range          : {df_clean['create_time_readable'].min()} "
-      f"to {df_clean['create_time_readable'].max()}")
-print(f"Platform            : TikTok")
+print(f"to {df_clean['create_time_readable'].max()}")
+print(f"Platform : TikTok")
