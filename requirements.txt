@@ -1,0 +1,22 @@
+# Analysis and reports (06_analysis, 07_reports, 05_evaluation, 03_annotation)
+pandas
+numpy
+scipy
+scikit-learn
+matplotlib
+seaborn
+python-docx
+pillow
+
+# Preprocessing (02_preprocessing)
+emoji
+langdetect
+sentencepiece
+
+# Classification (04_classification; the LLM runs need a GPU, the project used Kaggle T4)
+transformers
+torch
+accelerate
+
+# Collection (01_collection)
+researchtikpy

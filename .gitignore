@@ -1,0 +1,25 @@
+# Data never goes into this repository (TikTok Research API terms; the gold standard and the
+# few-shot examples contain post text).
+data/
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.json
+*.parquet
+*.pkl
+*.docx
+*.pdf
+*.png
+
+# Few-shot examples are real TikTok descriptions; use 04_classification/few_shot_examples_TEMPLATE.py
+04_classification/few_shot_examples.py
+
+# Local working files
+_local_only/
+*.ipynb
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.env
+.venv/

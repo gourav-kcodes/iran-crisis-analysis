@@ -83,6 +83,7 @@ df["hashtag"] = df["hashtag"].apply(
     lambda x: x if isinstance(x, str) 
     and re.match(r"^[A-Za-z0-9]+$", x) 
     and len(x) > 2 
+    and not x.isdigit()
     else None
 )
 print(f"Clean hashtags: {df['hashtag'].dropna().unique().tolist()}")
@@ -177,6 +178,7 @@ LANGUAGE_NAMES = {
     " ru": "Russian",
     "ru": "Russian",
     "zh": "Chinese", 
+    "lt": "Lithuanian",
     "ar": "Arabic",
     "fa": "Persian",
     "hi": "Hindi",
