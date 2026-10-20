@@ -1,7 +1,7 @@
 # Iran Crisis on TikTok: Sentiment and Narrative Framing
 
-Code for a research internship project at LMU Munich (supervisor: Dr. Anna-Carolina Haensch). The project classifies
-5,848 TikTok video descriptions about the 2026 Iran crisis (1 March – 30 April 2026) by sentiment and by narrative
+The project classifies
+5,848 TikTok video descriptions about the 2026 Iran crisis (1 March - 30 April 2026) by sentiment and by narrative
 frame with open-source language models, evaluates the models against a 400-row human-coded gold standard, and
 analyses the results over time, by language and region, and by engagement.
 
@@ -14,7 +14,7 @@ analyses the results over time, by language and region, and by engagement.
 ## No data in this repository
 
 The repository contains code only. TikTok data, the annotated gold standard, model outputs, figures and reports are not
-included, and `.gitignore` blocks them. The few-shot examples are also left out because most of them are real TikTok
+included. The few-shot examples are also left out because most of them are real TikTok
 descriptions; `04_classification/few_shot_examples_TEMPLATE.py` shows the structure.
 
 The scripts expect this layout, relative to the repository root:
