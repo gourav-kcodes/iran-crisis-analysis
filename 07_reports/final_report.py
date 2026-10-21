@@ -2,8 +2,7 @@
 # robustness checks. Every number is read from data/analysis/report_<s>/results.json,
 # data/analysis/report_<s>/classification_error.json and data/analysis/final/fewshot_overlap.json; ranking and
 # significance claims are checked with assertions before the text is written.
-# Run first: analysis_core.py, classification_error.py and report_figs.py for best, zs and fs; final_figs.py;
-# fewshot_overlap.py.
+# Run first: analysis_core.py, classification_error.py and report_figs.py for best, zs and fs; final_figs.py; fewshot_overlap.py.
 # Usage (project root): python 07_reports/final_report.py <template.docx> <out.docx>
 # template.docx: any earlier report .docx; only its page setup, styles and numbering are used.
 import sys, json
