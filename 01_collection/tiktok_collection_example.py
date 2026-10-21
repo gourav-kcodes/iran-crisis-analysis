@@ -1,4 +1,8 @@
-# Iran Crisis - TikTok Data Collection Script
+# Iran Crisis - TikTok Data Collection Script (EXAMPLE ONLY - not the script used for the project data)
+#
+# This script was written at the start of the project to test the TikTok Research API calls.
+# The project data were collected by Dr. Anna-Carolina Haensch with a different query set:
+# 18 hashtags, nine two-day query windows (1-2 March to 26-27 April 2026) and two whole-month queries.
 
 # Requirements: pip install researchtikpy pandas
 # Replace CLIENT_KEY and CLIENT_SECRET with your actual credentials
