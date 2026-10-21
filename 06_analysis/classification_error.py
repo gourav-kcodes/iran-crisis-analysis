@@ -1,4 +1,4 @@
-# Carries classification error into the label shares, using the 400-row gold standard (a simple random sample).
+# Carries classification error into the label shares, using the 400-row gold standard.
 # Method (calibration estimator): for each predicted label j, the gold sample gives P(true = i | predicted = j).
 # The error-corrected share of label i in a group is  sum_j  q_j * P(true = i | predicted = j),  where q_j is the
 # group's predicted share of j. Bootstrap (2,000 draws) resamples both the gold rows and the group's videos, so the
