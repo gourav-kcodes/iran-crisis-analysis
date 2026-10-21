@@ -1,8 +1,6 @@
-# Builds the three analysis reports with the Substantive report's own formatting
-# (paragraph, heading, caption, bullet and table XML cloned from Substantive_Analysis_Report_Final_v2.docx).
 # Run analysis_core.py and report_figs.py for the setting first.
 # Usage (project root): python 07_reports/build_reports.py best|zs|fs <template.docx> <out.docx>
-# template.docx: any earlier report .docx; only its page setup, styles and numbering are used.
+
 import sys, copy
 from docx import Document
 from docx.shared import Inches
