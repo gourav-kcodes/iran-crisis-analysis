@@ -11,7 +11,7 @@ analyses the results over time, by language and region, and by engagement.
 - **Models:** Mistral-7B-Instruct-v0.3, Qwen2.5-3B-Instruct, DeepSeek-R1-0528-Qwen3-8B (zero-shot and few-shot),
   Twitter-RoBERTa (3-class sentiment baseline)
 
-## No data in this repository
+## Repository
 
 The repository contains code only. TikTok data, the annotated gold standard, model outputs, figures and reports are not
 included. The few-shot examples are also left out because most of them are real TikTok
@@ -73,9 +73,8 @@ python 07_reports/final_report.py <template.docx> Final_Report.docx
 python 07_reports/verify_final.py Final_Report.docx
 ```
 
-`<template.docx>` is any earlier report .docx; only its page setup and styles are used.
 
-## Known issues
+## Notes
 
 - **Cleaning removes non-ASCII characters.** `preprocessing.py` reads the raw CSV with `encoding="unicode_escape"` and
   keeps only ASCII characters, before language detection and translation. Posts in non-Latin scripts (52 raw rows)
@@ -87,5 +86,3 @@ python 07_reports/verify_final.py Final_Report.docx
   `tiktok_collection_example.py` was written at the start of the project to test the API calls and is not the query
   set used for the final data.
 - **DeepSeek-R1 is partial:** 2,700 videos zero-shot and 3,000 few-shot.
-- **Zero-shot script for Mistral and Qwen.** The original script file was not kept. `llm_zeroshot.py` is rebuilt
-  from the project notebooks, using the prompt that the prompt-sensitivity notebook marks as the zero-shot prompt.
