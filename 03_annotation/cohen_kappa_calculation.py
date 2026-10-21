@@ -2,7 +2,7 @@
 # Cohen's Kappa Inter-Rater Reliability Calculation
 # Iran Crisis TikTok Annotation Project
 # Annotator 1: Gourav Kumawat
-# Annotator 2: Dr. Anna-Carolina Haensch (Caro)
+# Annotator 2: Dr. Anna Carolina Haensch
 # ============================================================
 
 import sys
@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics import cohen_kappa_score, confusion_matrix
 
-# ── TEE — write to both terminal and file simultaneously ──────────────────────
+# --- TEE — write to both terminal and file simultaneously ------------------
 
 class Tee:
     def __init__(self, *streams):
@@ -22,7 +22,7 @@ class Tee:
         for s in self.streams:
             s.flush()
 
-# ── CONFIGURATION ─────────────────────────────────────────────────────────────
+# --- CONFIGURATION --------------------------------------------------------------
 
 GOURAV_FILE = "data/clean/annotation_done_by_me - annotation_sample_400.csv"
 CARO_FILE   = "data/clean/annotation_sample_400.csv"
@@ -32,7 +32,7 @@ OUTPUT_FILE = "data/clean/kappa_results_full.txt"
 log_file   = open(OUTPUT_FILE, 'w', encoding='utf-8')
 sys.stdout = Tee(sys.__stdout__, log_file)
 
-# ── LOAD DATA ─────────────────────────────────────────────────────────────────
+# --- LOAD DATA -----------------------------------------------------------------
 
 print("Loading annotation files...")
 gourav = pd.read_csv(GOURAV_FILE, low_memory=False)
@@ -47,14 +47,14 @@ for i in range(len(gourav)):
         mismatch += 1
 print(f"Row alignment check: {mismatch} mismatches (0 = perfect)")
 
-# ── NORMALIZE LABELS ──────────────────────────────────────────────────────────
+# --- NORMALIZE LABELS -----------------------------------------------------------
 
 gourav['tier1'] = gourav['tier1_sentiment'].str.strip()
 gourav['tier3'] = gourav['tier3_frame'].str.strip()
 caro['tier1']   = caro['tier1_sentiment'].str.strip()
 caro['tier3']   = caro['tier3_frame'].str.strip().str.replace(' / ', '/', regex=False)
 
-# ── HELPERS ───────────────────────────────────────────────────────────────────
+# --- HELPER ---------------------------------------------------------------------
 
 def header(text):
     line = "=" * 70
@@ -69,7 +69,7 @@ def interpret_kappa(k):
     elif k >= 0.21: return "Fair agreement"
     else:           return "Slight or poor agreement"
 
-# ── OVERALL KAPPA ─────────────────────────────────────────────────────────────
+# --- OVERALL KAPPA -----------------------------------------------------------
 
 header("OVERALL COHEN'S KAPPA")
 
@@ -98,7 +98,7 @@ print(f"  Status         : {'✓ PASS' if kappa_t3 >= 0.61 else '✗ BELOW THRES
 print(f"\n  Tier 1 interpretation : {interpret_kappa(kappa_t1)}")
 print(f"  Tier 3 interpretation : {interpret_kappa(kappa_t3)}")
 
-# ── PER-LABEL KAPPA — TIER 1 ─────────────────────────────────────────────────
+# --- PER-LABEL KAPPA — TIER 1 -------------------------------------------------------------
 
 header("TIER 1 — PER-LABEL KAPPA BREAKDOWN")
 
@@ -119,7 +119,7 @@ for label in labels_t1:
     except Exception:
         print(f"  {label:<18} {'N/A':>7}  {g_cnt:>8}  {c_cnt:>6}  {both:>5}  Cannot compute")
 
-# ── PER-LABEL KAPPA — TIER 3 ─────────────────────────────────────────────────
+# -- PER-LABEL KAPPA — TIER 3 ------------------------------------------------------------
 
 header("TIER 3 — PER-LABEL KAPPA BREAKDOWN")
 
@@ -140,7 +140,7 @@ for label in labels_t3:
     except Exception:
         print(f"  {label:<25} {'N/A':>7}  {g_cnt:>8}  {c_cnt:>6}  {both:>5}  Cannot compute")
 
-# ── LABEL DISTRIBUTION COMPARISON ────────────────────────────────────────────
+# --- LABEL DISTRIBUTION COMPARISON ---------------------------------------------------------
 
 header("LABEL DISTRIBUTION COMPARISON")
 
@@ -160,7 +160,7 @@ for label in sorted(set(gourav['tier3'].unique()) | set(caro['tier3'].unique()))
     cc = (caro['tier3']   == label).sum()
     print(f"  {label:<25} {gc:>15}  {gc/total*100:>9.1f}%  {cc:>13}  {cc/total*100:>8.1f}%")
 
-# ── DISAGREEMENT ANALYSIS — TIER 1 ───────────────────────────────────────────
+# -- DISAGREEMENT ANALYSIS — TIER 1 --------------------------------------------------------
 
 header("TIER 1 — DISAGREEMENT ANALYSIS")
 
@@ -182,7 +182,7 @@ print("-" * 80)
 for idx, (_, row) in enumerate(disagree_t1.iterrows(), 1):
     print(f"  {idx:<3} {row['tier1']:<15} {row['caro_label']:<15} {row['text_preview']}")
 
-# ── DISAGREEMENT ANALYSIS — TIER 3 ───────────────────────────────────────────
+# --- DISAGREEMENT ANALYSIS — TIER 3 --------------------------------------------------------
 
 header("TIER 3 — DISAGREEMENT ANALYSIS")
 
@@ -204,7 +204,7 @@ print("-" * 90)
 for idx, (_, row) in enumerate(disagree_t3.iterrows(), 1):
     print(f"  {idx:<3} {row['tier3']:<27} {row['caro_label']:<27} {row['text_preview']}")
 
-# ── CONFUSION MATRIX — TIER 1 ─────────────────────────────────────────────────
+# --- CONFUSION MATRIX — TIER 1 -----------------------------------------------------------
 
 header("TIER 1 — CONFUSION MATRIX")
 
@@ -215,7 +215,7 @@ cm_df_t1.index.name = "Gourav \\ Caro"
 print("\nRows = Gourav labels, Columns = Caro labels")
 print(cm_df_t1.to_string())
 
-# ── CONFUSION MATRIX — TIER 3 ─────────────────────────────────────────────────
+# --- CONFUSION MATRIX — TIER 3 --------------------------------------------------
 
 header("TIER 3 — CONFUSION MATRIX")
 
@@ -226,7 +226,7 @@ cm_df_t3.index.name = "Gourav \\ Caro"
 print("\nRows = Gourav labels, Columns = Caro labels")
 print(cm_df_t3.to_string())
 
-# ── CLOSE FILE ────────────────────────────────────────────────────────────────
+# --- CLOSE FILE -------------------------------------------------------------------
 
 sys.stdout = sys.__stdout__
 log_file.close()
